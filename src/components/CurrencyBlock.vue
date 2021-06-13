@@ -4,7 +4,7 @@
     <div class="currency-block__info">
       <div class="rate">
         <div class="rate__left-side">
-          1 {{ !areSwapped ? ChareCode : 'RUB' }}
+          1 {{ !areSwapped ? CharCode : 'RUB' }}
         </div>
         <button class="swap-rate-btn" @click="swapRates">
           <div class="arrow-left">
@@ -12,7 +12,7 @@
           </div>
         </button>
         <div class="rate__right-side">
-          {{ !areSwapped ? (Value * Nominal).toFixed(4) : (Nominal / Value).toFixed(4) }} {{ !areSwapped ? 'RUB' : ChareCode }}
+          {{ !areSwapped ? (Value / Nominal).toFixed(4) : (Nominal / Value).toFixed(4) }} {{ !areSwapped ? 'RUB' : CharCode }}
         </div>
       </div>
       <div class="changes" :class="[ isIncrement ? 'changes--increment' : 'changes--decrement' ]">
@@ -23,12 +23,14 @@
 </template>
 <script>
 export default {
+  props: {
+    Name: String,
+    CharCode: String,
+    Nominal: Number,
+    Value: Number,
+    Previous: Number
+  },
   data: () => ({
-    Name: 'Австралийский доллар',
-    ChareCode: 'AUD',
-    Nominal: 1,
-    Value: 54.8519,
-    Previous: 55.8498,
     areSwapped: false
   }),
   computed: {

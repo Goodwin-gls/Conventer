@@ -5,9 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    valute: {
-      chtoto: 'chtoto'
-    }
+    valute: {},
+    isLoading: true
   },
   getters: {
     valuteArray(state) {
@@ -17,13 +16,19 @@ export default new Vuex.Store({
   mutations: {
     setValute(state, newValute) {
       state.valute = newValute
+    },
+    setLoad(state, boolean) {
+      state.isLoading = boolean
     }
   },
   actions: {
-    async fetchCurrency({commit}) {
-      let response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js')
-      let data = await response.json()
-      commit('setValute', data.Valute)
+    async fetchCurrency({commit, state}) {
+      if (state.isLoading) {
+        let response = await fetch('https://www.cbr-xml-daily.ru/daily_json.js')
+        let data = await response.json()
+        commit('setValute', data.Valute)
+        commit('setLoad', false)
+      }
     }
   }
 })

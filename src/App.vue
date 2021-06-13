@@ -63,7 +63,9 @@ body {
   margin: 0 auto;
 }
 .tool {
-  background: #239cff
+  min-height: calc(100vh - 28px);
+  background: #239cff;
+  position: relative;
 }
 .tab-button {
   border: 1px solid #239cff;
