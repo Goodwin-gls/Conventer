@@ -4,7 +4,7 @@
     <div v-else class="currency-list">
       <div class="content">
         <div class="currency-list__search">
-          <input v-model="search" class="currency-list__search-input" type="text">
+          <input v-model.trim="search" class="currency-list__search-input" type="text">
           <div class="currency-list__search-underline"></div>
           <div class="currency-list__search-icon"></div>
         </div>
@@ -30,9 +30,6 @@ export default {
       } else {
         return this.$store.getters.valuteArray.filter( (item) => ~item.Name.toLowerCase().indexOf(this.search.toLowerCase()) || ~item.CharCode.toLowerCase().indexOf(this.search.toLowerCase()))
       }
-    },
-    valuteArray() {
-      return this.$store.getters.valuteArray.filter( (item) => ~item.Name.toLowerCase().indexOf(this.search.toLowerCase()) || ~item.CharCode.toLowerCase().indexOf(this.search.toLowerCase()))
     }
   }
 }
@@ -45,8 +42,6 @@ export default {
   transform: translate(-50% -50%);
 }
 .currency-list {
-  width: 100%;
-  padding: 15px 30px;
   &__search {
     width: 400px;
     position: relative;

@@ -36,7 +36,7 @@ export default {
     TabButton
   },
   data: () => ({
-    currentTool: 'CurrencyList'
+    currentTool: 'CurrencyConventer'
   }),
   methods: {
     changeTool(e) {
@@ -66,6 +66,8 @@ body {
   min-height: calc(100vh - 28px);
   background: #239cff;
   position: relative;
+  width: 100%;
+  padding: 15px 30px;
 }
 .tab-button {
   border: 1px solid #239cff;
